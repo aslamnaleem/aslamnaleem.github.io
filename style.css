@@ -6,6 +6,11 @@
     --text-muted: #6b779a;
     --white: #ffffff;
     
+    /* Cyber Canvas Blueprints */
+    --cyber-base: #0b0f19;       
+    --grid-line: rgba(85, 104, 254, 0.08); 
+    --grid-dot: rgba(85, 104, 254, 0.2);   
+
     /* Neumorphic Shadows */
     --flat-shadow-drop: 8px 8px 20px #ced4de, -8px -8px 20px #ffffff;
     --flat-shadow-inset: inset 4px 4px 8px #ced4de, inset -4px -4px 8px #ffffff;
@@ -19,7 +24,6 @@
 
 body {
     font-family: 'Poppins', sans-serif; 
-    background-color: var(--accent-blue); 
     color: var(--text-dark);
     min-height: 100vh;
     display: flex;
@@ -27,6 +31,60 @@ body {
     align-items: center;
     overflow-x: hidden;
     padding: 60px 20px;
+
+    /* Technical Cyber Grid Base */
+    background-color: var(--cyber-base);
+    background-image: 
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+        radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+    position: relative;
+}
+
+/* Static ambient server aura underlay */
+body::after {
+    content: "";
+    position: fixed;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(85, 104, 254, 0.12) 0%, transparent 65%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- THE MOUSE SONAR PULSE ARCHITECTURE --- */
+.sonar-ping {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    border: 2px solid rgba(85, 104, 254, 0.5);
+    border-radius: 50px;
+    pointer-events: none;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    /* Triggers an instant expanding flash ring that safely self-destructs */
+    animation: pingRipple 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes pingRipple {
+    0% {
+        width: 0px;
+        height: 0px;
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(85, 104, 254, 0.8);
+    }
+    100% {
+        width: 140px;
+        height: 140px;
+        opacity: 0;
+        box-shadow: 0 0 20px rgba(85, 104, 254, 0);
+    }
 }
 
 /* Rounded Main Frame Container */
@@ -36,7 +94,7 @@ body {
     background: var(--bg-color); 
     border-radius: 40px;
     padding: 50px 60px;
-    box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 30px 80px rgba(4, 6, 12, 0.6);
     position: relative;
     z-index: 10;
 }
@@ -63,7 +121,7 @@ body {
     font-size: 13px;
     margin-left: 25px;
     letter-spacing: 1px;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .navbar nav a:hover, .navbar nav a.active {
@@ -150,7 +208,7 @@ body {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 12px 24px rgba(85, 104, 254, 0.35);
+    box-shadow: 0px 12px 24px rgba(85, 104, 254, 0.4);
 }
 
 .btn-secondary {
@@ -202,6 +260,7 @@ section h2 {
 
 .skill-card:hover {
     transform: translateY(-4px);
+    color: var(--accent-blue);
 }
 
 /* Experience Block Layout */
@@ -308,7 +367,7 @@ section h2 {
     top: 0;
 }
 
-/* Brand Specific Logos & Certification Architectures */
+/* Certifications Grid */
 .certs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -354,7 +413,7 @@ section h2 {
     color: #4a5568;
 }
 
-/* Academic Qualifications Track */
+/* Academic Tracks */
 .qual-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -393,7 +452,7 @@ section h2 {
     color: #d97706;
 }
 
-/* Contact Module Frame */
+/* Contact Frame */
 .contact-card {
     background: var(--bg-color);
     padding: 30px;
@@ -412,6 +471,7 @@ section h2 {
 @media(max-width: 768px) {
     body {
         padding: 20px 10px;
+        background-size: 35px 35px;
     }
     .main-frame {
         padding: 35px 20px;
