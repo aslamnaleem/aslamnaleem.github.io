@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Wazuh SIEM Deployment | Aslam Naleem</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- WIDE ARCHITECTURE DETAILS --- */
+        .tech-stack-pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .pill {
+            background: var(--bg-color);
+            box-shadow: var(--flat-shadow-inset);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- WIDE-FORMAT CINEMATIC STAGE DECK --- */
+        .theater-stage {
+            position: relative;
+            width: 100%;
+            max-width: 900px; /* Wider footprint for landscape technical UI screenshots */
+            margin: 40px auto;
+        }
+
+        .deck-viewport {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* Perfect 16:9 Landscape Aspect Ratio */
+            overflow: hidden;
+        }
+
+        .slide-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(0.98) translateY(10px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slide-panel.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Unified presentation layer forcing identical rendering scales */
+        .borderless-frame {
+            width: 100%;
+            height: 100%; /* Forces image to respect the parent viewport height */
+            object-fit: contain; /* Scales image beautifully inside the box without clipping */
+            border-radius: 12px;
+            filter: drop-shadow(0px 25px 40px rgba(163, 177, 198, 0.6)) 
+                    drop-shadow(0px -10px 25px rgba(255, 255, 255, 0.5));
+            transition: transform 0.5s ease;
+        }
+
+        .slide-panel:hover .borderless-frame {
+            transform: scale(1.01);
+        }
+
+        .theater-caption {
+            margin-top: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.5s ease 0.2s;
+        }
+
+        .slide-panel.active .theater-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Interactive Dynamic Controllers */
+        .theater-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-ring {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            box-shadow: var(--flat-shadow-drop);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .nav-ring:hover {
+            box-shadow: var(--flat-shadow-inset);
+            color: #007acc; /* Technical blue accent focus */
+        }
+
+        .deck-indicators {
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ced4de;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #007acc;
+            transform: scale(1.4);
+            box-shadow: 0 0 10px rgba(0, 122, 204, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Container Frame -->
+    <div class="main-frame">
+        
+        <!-- Navigation Header -->
+        <header class="navbar">
+            <div class="logo">AN.</div>
+            <nav>
+                <a href="cyberprojects.html">← BACK TO CYBER PROJECTS</a>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main>
+            
+            <!-- Smooth Project Intro Section -->
+            <section class="hero-section">
+                <div class="hero-text">
+                    <h1>Distributed Cloud SecOps Infrastructure & SIEM Orchestration</h1>
+                    <p class="role-title">Cloud Security & Compliance Engineering</p>
+                    
+                    <div class="tech-stack-pills">
+                        <span class="pill">Wazuh XDR</span>
+                        <span class="pill">AWS EC2</span>
+                        <span class="pill">Active Response</span>
+                        <span class="pill">MITRE ATT&CK</span>
+                        <span class="pill">FIM</span>
+                        <span class="pill">Linux/Windows</span>
+                    </div>
+
+                    <p class="tagline" style="margin-top: 25px;">
+                        <strong>Executive Summary:</strong> Deployed a highly available, distributed Wazuh SIEM/XDR architecture on AWS EC2 instances to orchestrate threat detection across heterogeneous enterprise environments. This production-grade implementation unifies continuous log aggregation, system file telemetry, automated active response mitigation loops, and direct compliance alignment mapping into a single defensive operations dashboard.
+                    </p>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Showcase Subsection: Cinematic Borderless Interactive Deck -->
+            <!-- Showcase Subsection: Fixed Wide-Format Stage Deck -->
+            <section id="app-tour">
+                <h2>Security Operations & Telemetry Ledger</h2>
+                
+                <div class="theater-stage">
+                    <div class="deck-viewport">
+                        
+                        <!-- Slide 1: Core Dashboard & Ingestion -->
+                        <div class="slide-panel active">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/2.png" class="borderless-frame" alt="2">
+                            </div>
+                            <div class="theater-caption">Wazuh dashboard with connected Ubuntu and Windows agents within a controlled AWS lab</div>
+                        </div>
+
+                        <!-- Slide 2: Active Response / Attack Simulation -->
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/1.png" class="borderless-frame" alt="1">
+                            </div>
+                            <div class="theater-caption">Wazuh dashboard with active agents within a controlled AWS Lab.</div>
+                        </div>
+
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/11.png" class="borderless-frame" alt="11">
+                            </div>
+                            <div class="theater-caption">Cross-Platform Enrollment: Linux Agent Ingestion</div>
+                        </div>
+
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/9.png" class="borderless-frame" alt="9">
+                            </div>
+                            <div class="theater-caption">Wazuh 2025 Login Portal</div>
+                        </div>
+
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/6.png" class="borderless-frame" alt="6">
+                            </div>
+                            <div class="theater-caption">Continuation of Wazuh alert for repeated invalid SSH login attempts with non-existent users.</div>
+                        </div>
+
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/8.png" class="borderless-frame" alt="8">
+                            </div>
+                            <div class="theater-caption">Vulnerability Assessment & Critical CVE Tracking for Linux Endpoints</div>
+                        </div>
+
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/4.png" class="borderless-frame" alt="4">
+                            </div>
+                            <div class="theater-caption">Real-Time File Integrity Monitoring (FIM) & Regulatory Compliance Mapping for Windows Endpoints</div>
+                        </div>
+
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/12.png" class="borderless-frame" alt="12">
+                            </div>
+                            <div class="theater-caption">Decoded Telemetry: Geolocation & Windows Authentication Tracking</div>
+                        </div>
+
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/10.png" class="borderless-frame" alt="10">
+                            </div>
+                            <div class="theater-caption">Windows Agent Provisioning via Administrative PowerShell Scripting</div>
+                        </div>
+
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/7.png" class="borderless-frame" alt="7">
+                            </div>
+                            <div class="theater-caption">Configuring the Active Response Engine within ossec.conf to Automate Local Firewall-Drop Rules</div>
+                        </div>
+
+                        <div class="slide-panel">
+                            <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center;">
+                                <img src="wazuh/3.png" class="borderless-frame" alt="3">
+                            </div>
+                            <div class="theater-caption">CIS Benchmark Configuration Assessment and Hardening Audit for Ubuntu Linux</div>
+                        </div>
+
+                    </div>
+
+                    <!-- Immersive Interactive Navigation Array with Numerical Counter -->
+                    <div class="theater-controls">
+                        <button class="nav-ring" id="prevSlide" aria-label="Previous Slide">◀</button>
+                        
+                        <!-- Minimalist Technical Counter Display -->
+                        <div class="deck-indicators" style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: var(--text-muted); letter-spacing: 1px;">
+                            <span id="current-index-display" style="color: #007acc;">01</span> 
+                            <span style="opacity: 0.4; font-weight: 300; margin: 0 4px;">/</span> 
+                            <span id="total-slides-display">11</span>
+                        </div>
+
+                        <button class="nav-ring" id="nextSlide" aria-label="Next Slide">▶</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Interactive Loop Engine Script Operations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.slide-panel');
+        const currentIndexDisplay = document.getElementById('current-index-display');
+        const totalSlidesDisplay = document.getElementById('total-slides-display');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        
+        let currentIndex = 0;
+        let slideInterval;
+        const intervalTime = 5000; // Flips every 5 seconds
+
+        // Initialize total count based on actual DOM elements
+        if (totalSlidesDisplay) {
+            totalSlidesDisplay.textContent = String(slides.length).padStart(2, '0');
+        }
+
+        function updateStage(index) {
+            // Remove active state from current slide
+            slides[currentIndex].classList.remove('active');
+            
+            // Calculate cyclical boundary loops
+            currentIndex = (index + slides.length) % slides.length;
+            
+            // Add active state to new slide
+            slides[currentIndex].classList.add('active');
+            
+            // Dynamically update the string counter (e.g., 1 becomes "01")
+            if (currentIndexDisplay) {
+                currentIndexDisplay.textContent = String(currentIndex + 1).padStart(2, '0');
+            }
+        }
+
+        function startTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                updateStage(currentIndex + 1);
+            }, intervalTime);
+        }
+
+        // Interactive Click Controls
+        nextBtn.addEventListener('click', () => {
+            updateStage(currentIndex + 1);
+            startTimer();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            updateStage(currentIndex - 1);
+            startTimer();
+        });
+
+        // Fire up the auto-scroll loop
+        startTimer();
+    });
+    </script>
+
+    <!-- Mouse Tracking Script Link -->
+    <script src="script.js"></script>
+</body>
+</html>
