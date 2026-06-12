@@ -9,19 +9,21 @@
     <style>
         /* --- CINEMATIC BORDERLESS STAGE DECK --- */
         .theater-stage {
-            position: relative;
             width: 100%;
-            max-width: 700px; /* Large dramatic footprint */
+            max-width: 500px; /* Tailored footprint for elegant mobile app windows */
             margin: 40px auto;
-            perspective: 1200px; /* Gives a slight 3D depth hint on transitions */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .deck-viewport {
             position: relative;
             width: 100%;
-            height: 0;
-            padding-bottom: 133%; /* Matches the tall vertical aspect ratio of your screenshots */
-            overflow: hidden;
+            height: 65vh; /* Evaluates viewport dynamically to prevent cropping on desktop */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .slide-panel {
@@ -31,12 +33,13 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transform: scale(0.95) translateY(10px);
+            transform: scale(0.96) translateY(15px);
             transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
                         transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
             pointer-events: none;
             display: flex;
             flex-direction: column;
+            justify-content: space-between; /* Keeps image space and caption text structurally isolated */
             align-items: center;
         }
 
@@ -46,37 +49,37 @@
             pointer-events: auto;
         }
 
-        /* Completely borderless image framing with deep immersive depth drops */
-        .borderless-frame {
+        /* Responsive image box that scales cleanly inside available window space */
+        .image-wrapper-box {
             width: 100%;
-            height: auto;
-            display: block;
-            filter: drop-shadow(0px 30px 50px rgba(163, 177, 198, 0.7)) 
-                    drop-shadow(0px -10px 30px rgba(255, 255, 255, 0.6));
+            height: 85%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .borderless-frame {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Prevents stretching and scales down smoothly on small screens */
+            filter: drop-shadow(0px 20px 35px rgba(163, 177, 198, 0.7)) 
+                    drop-shadow(0px -10px 25px rgba(255, 255, 255, 0.6));
             transition: transform 0.5s ease;
         }
 
         .slide-panel:hover .borderless-frame {
-            transform: scale(1.015);
+            transform: scale(1.02);
         }
 
         /* Ambient Dynamic Caption text */
         .theater-caption {
-            margin-top: 25px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--text-muted);
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
             text-align: center;
-            opacity: 0;
-            transform: translateY(5px);
-            transition: all 0.5s ease 0.2s;
-        }
-
-        .slide-panel.active .theater-caption {
-            opacity: 1;
-            transform: translateY(0);
+            margin-top: auto; /* Pushes content down cleanly above the navigation bar */
         }
 
         /* Creative Interactive Controller Layout */
@@ -84,16 +87,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
-            margin-top: -10px;
+            gap: 35px;
+            margin-top: 15px; /* Guarantees breathing room on mobile viewports */
             position: relative;
             z-index: 10;
         }
 
         /* Sleek Neumorphic Navigation Rings */
         .nav-ring {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             background: var(--bg-color);
             box-shadow: var(--flat-shadow-drop);
@@ -102,7 +105,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--text-muted);
             transition: all 0.3s ease;
         }
@@ -112,25 +115,18 @@
             color: #ff6b6b; /* Accent highlight matches the application */
         }
 
-        /* Centralized step indicators */
-        .deck-indicators {
-            display: flex;
-            gap: 12px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #ced4de;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .dot.active {
-            background: #ff6b6b;
-            transform: scale(1.4);
-            box-shadow: 0 0 10px rgba(255, 107, 107, 0.4);
+        /* Mobile specific fluid viewport corrections */
+        @media (max-width: 768px) {
+            .theater-stage {
+                margin: 20px auto;
+                padding: 0 10px;
+            }
+            .deck-viewport {
+                height: 55vh; /* Drops container down slightly on mobile screens to preserve layout */
+            }
+            .theater-caption {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -169,15 +165,15 @@
                         
                         <!-- Panel 01 -->
                         <div class="slide-panel active">
-                            <div style="width: 100%; height: 90%; display: flex; justify-content: center; align-items: center;">
+                            <div class="image-wrapper-box">
                                 <img src="countdown/1.png" class="borderless-frame" alt="App verification workflow layout">
                             </div>
                             <div class="theater-caption">Secure Access Configuration</div>
                         </div>
 
-                        <!-- Panel 02 -->
+                        <!-- Panel 02 (Corrected image source path) -->
                         <div class="slide-panel">
-                            <div style="width: 100%; height: 90%; display: flex; justify-content: center; align-items: center;">
+                            <div class="image-wrapper-box">
                                 <img src="countdown/2.png" class="borderless-frame" alt="Empty panel tracking state structure">
                             </div>
                             <div class="theater-caption">Personalized User Landing</div>
@@ -185,7 +181,7 @@
 
                         <!-- Panel 03 -->
                         <div class="slide-panel">
-                            <div style="width: 100%; height: 90%; display: flex; justify-content: center; align-items: center;">
+                            <div class="image-wrapper-box">
                                 <img src="countdown/3.png" class="borderless-frame" alt="Parameter assignment fields menu">
                             </div>
                             <div class="theater-caption">Task Registration Engine</div>
@@ -193,7 +189,7 @@
 
                         <!-- Panel 04 -->
                         <div class="slide-panel">
-                            <div style="width: 100%; height: 90%; display: flex; justify-content: center; align-items: center;">
+                            <div class="image-wrapper-box">
                                 <img src="countdown/4.png" class="borderless-frame" alt="Live processing metrics matrix row">
                             </div>
                             <div class="theater-caption">Dynamic Live Counting Module</div>
@@ -201,15 +197,15 @@
 
                     </div>
 
-                    <!-- Immersive Interactive Navigation Array -->
+                    <!-- Immersive Interactive Navigation Array with Numerical Counter -->
                     <div class="theater-controls">
                         <button class="nav-ring" id="prevSlide" aria-label="Previous Slide">◀</button>
                         
-                        <div class="deck-indicators">
-                            <span class="dot active" data-index="0"></span>
-                            <span class="dot" data-index="1"></span>
-                            <span class="dot" data-index="2"></span>
-                            <span class="dot" data-index="3"></span>
+                        <!-- Minimalist Technical Counter Display -->
+                        <div class="deck-indicators" style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: var(--text-muted); letter-spacing: 1px;">
+                            <span id="current-index-display" style="color: #ff6b6b;">01</span> 
+                            <span style="opacity: 0.4; font-weight: 300; margin: 0 4px;">/</span> 
+                            <span id="total-slides-display">04</span>
                         </div>
 
                         <button class="nav-ring" id="nextSlide" aria-label="Next Slide">▶</button>
@@ -225,25 +221,27 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.slide-panel');
-            const dots = document.querySelectorAll('.dot');
+            const currentIndexDisplay = document.getElementById('current-index-display');
+            const totalSlidesDisplay = document.getElementById('total-slides-display');
             const prevBtn = document.getElementById('prevSlide');
             const nextBtn = document.getElementById('nextSlide');
             
             let currentIndex = 0;
             let slideInterval;
-            const intervalTime = 4500; // Flips frames automatically every 4.5 seconds
+            const intervalTime = 4500; // Flips every 4.5 seconds
+
+            if (totalSlidesDisplay) {
+                totalSlidesDisplay.textContent = String(slides.length).padStart(2, '0');
+            }
 
             function updateStage(index) {
-                // Clear active states
-                slides.forEach(slide => slide.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
-                
-                // Track cyclical boundaries cleanly
+                slides[currentIndex].classList.remove('active');
                 currentIndex = (index + slides.length) % slides.length;
-                
-                // Commit updates to active tokens
                 slides[currentIndex].classList.add('active');
-                dots[currentIndex].classList.add('active');
+                
+                if (currentIndexDisplay) {
+                    currentIndexDisplay.textContent = String(currentIndex + 1).padStart(2, '0');
+                }
             }
 
             function startTimer() {
@@ -253,10 +251,9 @@
                 }, intervalTime);
             }
 
-            // Click Handlers
             nextBtn.addEventListener('click', () => {
                 updateStage(currentIndex + 1);
-                startTimer(); // Reset auto-timer on click so it doesn't flip too fast
+                startTimer();
             });
 
             prevBtn.addEventListener('click', () => {
@@ -264,15 +261,6 @@
                 startTimer();
             });
 
-            dots.forEach(dot => {
-                dot.addEventListener('click', (e) => {
-                    const targetIndex = parseInt(e.target.getAttribute('data-index'));
-                    updateStage(targetIndex);
-                    startTimer();
-                });
-            });
-
-            // Kick off the loop machine
             startTimer();
         });
     </script>
